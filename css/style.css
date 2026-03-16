@@ -522,3 +522,138 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; color: var(--da
   background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
+
+/* ==================== PARALLAX INTERLUDE ==================== */
+.parallax-interlude {
+  position: relative; height: 400px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; color: #fff;
+}
+.parallax-interlude-bg {
+  position: absolute; inset: -50px; z-index: 0;
+  background-size: cover; background-position: center;
+  background-attachment: fixed;
+}
+.parallax-interlude-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(135deg, rgba(15,26,15,0.65) 0%, rgba(46,125,50,0.45) 100%);
+}
+.parallax-interlude-content {
+  position: relative; z-index: 2; max-width: 700px; padding: 0 2rem;
+}
+.parallax-interlude-content h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3); line-height: 1.3; margin-bottom: 1rem;
+}
+.parallax-interlude-content p {
+  font-size: 1.05rem; opacity: 0.85; line-height: 1.7; font-weight: 300;
+}
+@media (max-width: 768px) {
+  .parallax-interlude { height: 300px; }
+  .parallax-interlude-bg { background-attachment: scroll; }
+}
+
+/* ==================== WAVE SECTION DIVIDERS ==================== */
+.wave-divider {
+  position: relative; width: 100%; overflow: hidden;
+  line-height: 0; margin-top: -1px;
+}
+.wave-divider svg {
+  display: block; width: 100%; height: 60px;
+}
+.wave-divider-cream svg { fill: var(--cream); }
+.wave-divider-white svg { fill: var(--white); }
+.wave-divider-dark svg { fill: var(--dark); }
+@media (max-width: 768px) {
+  .wave-divider svg { height: 35px; }
+}
+
+/* ==================== ENHANCED CARD HOVER (3D Tilt + Glow) ==================== */
+.card {
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+.card:hover {
+  transform: translateY(-10px) rotateX(2deg) rotateY(-1deg);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.14), 0 0 0 1px rgba(46,125,50,0.08);
+}
+.card::after {
+  content: ''; position: absolute; inset: 0; border-radius: var(--radius-md);
+  box-shadow: inset 0 0 0 1px rgba(46,125,50,0);
+  transition: box-shadow 0.4s;
+  pointer-events: none;
+}
+.card:hover::after {
+  box-shadow: inset 0 0 0 2px rgba(46,125,50,0.15);
+}
+
+.food-card {
+  perspective: 800px;
+}
+.food-card:hover {
+  transform: translateY(-10px) rotate(-0.5deg) scale(1.01);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.14);
+}
+
+.product-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+}
+
+.stat-card {
+  perspective: 600px;
+}
+.stat-card:hover {
+  transform: translateY(-8px) rotateX(3deg);
+  box-shadow: 0 20px 50px rgba(46,125,50,0.12);
+  border-color: rgba(46,125,50,0.2);
+}
+
+.chart-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  border-color: rgba(46,125,50,0.1);
+}
+
+/* ==================== CINEMATIC SECTION REVEAL ==================== */
+[data-aos="cinematic-up"] {
+  opacity: 0;
+  transform: translateY(60px) scale(0.97);
+  transition-property: opacity, transform;
+}
+[data-aos="cinematic-up"].aos-animate {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+[data-aos="cinematic-left"] {
+  opacity: 0;
+  transform: translateX(-60px) scale(0.97);
+  transition-property: opacity, transform;
+}
+[data-aos="cinematic-left"].aos-animate {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+[data-aos="cinematic-right"] {
+  opacity: 0;
+  transform: translateX(60px) scale(0.97);
+  transition-property: opacity, transform;
+}
+[data-aos="cinematic-right"].aos-animate {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+/* ==================== GLOW ACCENT LINE ==================== */
+.glow-line {
+  width: 80px; height: 3px; border-radius: 3px; margin: 1rem auto;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  box-shadow: 0 0 12px var(--primary-glow);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 12px var(--primary-glow); }
+  50% { box-shadow: 0 0 25px var(--primary-glow), 0 0 50px rgba(46,125,50,0.15); }
+}
